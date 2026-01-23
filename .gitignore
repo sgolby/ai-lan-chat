@@ -1,0 +1,93 @@
+# ==============================================================================
+# DIRECTORY EXCLUSIONS (temporary - until ready for multi-project structure)
+# ==============================================================================
+CoreLogic/
+Desktop-Mac/
+
+# ==============================================================================
+# BUILD OUTPUTS (at any level in directory tree)
+# ==============================================================================
+**/bin/
+**/obj/
+**/Builds/
+**/[Dd]ebug/
+**/[Dd]ebugPublic/
+**/[Rr]elease/
+**/[Rr]eleases/
+**/x64/
+**/x86/
+**/[Ww][Ii][Nn]32/
+**/[Aa][Rr][Mm]/
+**/[Aa][Rr][Mm]64/
+**/bld/
+**/[Bb]in/
+**/[Oo]bj/
+**/[Ll]og/
+**/[Ll]ogs/
+**/artifacts/
+build-exe.bat
+nul
+
+**/[Ss]amples/
+
+# ==============================================================================
+# IDE FILES (at any level in directory tree)
+# ==============================================================================
+
+# JetBrains Rider
+**/.idea/
+*.sln.iml
+**/_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
+LocalChatUI.sln
+
+# Visual Studio
+**/.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# VS Code
+**/.vscode/
+
+# ==============================================================================
+# .NET CORE
+# ==============================================================================
+project.lock.json
+project.fragment.lock.json
+
+# ==============================================================================
+# NUGET PACKAGES
+# ==============================================================================
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+
+# ==============================================================================
+# PLATFORM-SPECIFIC
+# ==============================================================================
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# ==============================================================================
+# CLAUDE
+# ==============================================================================
+.claude/
+CLAUDE.md
+Cross-Platform-Windows-Mac-CSharp-development-chat-trimmed*
+HOW_TO_GUIDE_NEW_PROJECT_COPY.md
