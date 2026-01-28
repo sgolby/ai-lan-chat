@@ -33,6 +33,40 @@ namespace LocalChatUI.Desktop
             };
 
             ApplyLightTheme(); // Start with light theme
+
+            // Auto-populate server dropdowns on startup
+            LoadServerDropdowns();
+        }
+
+        private void LoadServerDropdowns()
+        {
+            try
+            {
+                var config = ConfigService.LoadServerConfig(_configPath);
+                if (config == null)
+                    return;
+
+                // Populate the 3 dropdown comparisons
+                ModernServerComboBox.ItemsSource = config.Servers;
+                MinimalistServerComboBox.ItemsSource = config.Servers;
+                MaterialServerComboBox.ItemsSource = config.Servers;
+
+                // Set active server as selected in all 3 dropdowns
+                if (!string.IsNullOrEmpty(config.ActiveServer))
+                {
+                    var activeServer = config.Servers.Find(s => s.Name == config.ActiveServer);
+                    if (activeServer != null)
+                    {
+                        ModernServerComboBox.SelectedItem = activeServer;
+                        MinimalistServerComboBox.SelectedItem = activeServer;
+                        MaterialServerComboBox.SelectedItem = activeServer;
+                    }
+                }
+            }
+            catch
+            {
+                // Silently fail on startup if config doesn't exist
+            }
         }
 
         private void ThemeToggle_Click(object sender, RoutedEventArgs e)
@@ -132,6 +166,9 @@ namespace LocalChatUI.Desktop
                 string formattedDisplay = ConfigService.FormatServerDisplay(config);
                 OriginalTextDisplay.Text = formattedDisplay;
                 WordCountLabel.Text = $"Server Count: {config.Servers.Count}";
+
+                // Refresh dropdowns
+                LoadServerDropdowns();
             }
             catch (FileNotFoundException ex)
             {
@@ -176,6 +213,9 @@ namespace LocalChatUI.Desktop
                     string formattedDisplay = ConfigService.FormatServerDisplay(config);
                     OriginalTextDisplay.Text = formattedDisplay;
                     WordCountLabel.Text = $"Server Count: {config!.Servers.Count}";
+
+                    // Refresh dropdowns
+                    LoadServerDropdowns();
                 }
             }
             catch (FileNotFoundException ex)
@@ -202,6 +242,9 @@ namespace LocalChatUI.Desktop
                     string formattedDisplay = ConfigService.FormatServerDisplay(config);
                     OriginalTextDisplay.Text = formattedDisplay;
                     WordCountLabel.Text = $"Server Count: {config.Servers.Count}";
+
+                    // Refresh dropdowns
+                    LoadServerDropdowns();
                 }
             }
             catch (FileNotFoundException ex)
